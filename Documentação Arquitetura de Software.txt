@@ -1,0 +1,70 @@
+﻿Documentação Arquitetura de Software
+Padrões de Projeto Utilizados
+
+
+Padrões Criacionais: Factory Method (FormaterFactory)
+
+Descrição: O padrão Factory Method é utilizado para criar objetos sem especificar a classe exata do objeto que será criado.
+Ele delega a criação do objeto para subclasses.
+
+Implementação: Foi criado instâncias de diferentes formatadores (HTML, TXT, CSV, JSON, XML, YAML) com base em uma string de tipo fornecida.
+
+Justificativa: Esse padrão foi escolhido para centralizar a lógica de criação dos objetos formatadores, permitindo fácil extensão para novos
+formatos de saída sem alterar o código existente.
+
+
+
+Padrões Estruturais: Adapter (FileReaderAdapter):
+
+Descrição: O padrão Adapter converte a interface de uma classe em outra interface que um cliente deseja. Ele permite que classes com interfaces
+incompatíveis trabalhem juntas.
+
+Implementação: As classes CSVFileReader, JSONFileReader, XMLFileReader e YAMLFileReader estendem FileReaderAdapter e implementam o método read
+para ler e processar diferentes tipos de arquivos.
+
+Justificativa: Esse padrão foi utilizado para permitir que diferentes leitores de arquivos sejam tratados de forma uniforme, independente do
+formato do arquivo, facilitando a integração com o restante do sistema.
+
+
+
+Padrões Comportamentais: Strategy (FormaterStrategy):
+
+Descrição: O padrão Strategy define uma família de algoritmos, encapsula cada um deles e os torna intercambiáveis. O Strategy permite que o
+algoritmo varie independentemente dos clientes que o utilizam.
+
+Implementação: O CitiesReporter usa uma instância de AbstractFormater para definir sua estratégia de formatação. Diferentes formatadores
+(FormaterHTML, FormaterTXT, FormaterCSV, etc.) podem ser passados para o CitiesReporter, permitindo a troca da estratégia de formatação em
+tempo de execução.
+
+Justificativa: Esse padrão foi escolhido para permitir a formatação dos dados de diferentes maneiras, sem que o CitiesReporter precise conhecer
+os detalhes de cada formato.
+
+
+
+Refatorações Aplicadas Princípios SOLID:
+
+Single Responsibility Principle (SRP)
+
+Refatoração: Cada classe agora tem uma única responsabilidade. As classes de formatação são responsáveis apenas por formatar os dados, e as
+classes de leitura de arquivos são responsáveis apenas por ler e processar arquivos.
+
+Exemplo: CSVFileReader é responsável apenas por ler arquivos CSV e FormaterCSV é responsável apenas por formatar dados como CSV.
+
+
+
+Open/Closed Principle (OCP):
+
+Refatoração: O código foi modificado para ser aberto para extensão, mas fechado para modificação. Novos formatadores podem ser adicionados sem
+modificar o código existente, apenas estendendo AbstractFormater e adicionando a lógica de formatação.
+
+Exemplo: A classe FormaterFactory permite adicionar novos tipos de formatadores sem precisar modificar os métodos da fábrica ou das classes de
+formatação existentes.
+
+
+
+Dependency Inversion Principle (DIP):
+
+Refatoração: O CitiesReporter agora depende de abstrações (AbstractFormater e FileReaderAdapter) em vez de classes concretas, tornando o
+sistema mais flexível e testável.
+
+Exemplo: CitiesReporter recebe a instância de um AbstractFormater na construção, permitindo o uso de diferentes estratégias de formatação.
