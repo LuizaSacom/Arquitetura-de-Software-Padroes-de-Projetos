@@ -1,4 +1,4 @@
-##📚 Projeto de Arquitetura de Software – Formatador e Leitor de Arquivos de Cidades
+## 🗂️ Projeto de Arquitetura de Software – Formatador e Leitor de Arquivos de Cidades
 
 Projeto desenvolvido para fins educacionais, com o objetivo de praticar os conhecimentos adquiridos nas aulas de arquitetura de Software.
 
