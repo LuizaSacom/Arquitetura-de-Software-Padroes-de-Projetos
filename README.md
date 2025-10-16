@@ -55,6 +55,6 @@ Exemplo: CitiesReporter recebe a instância de um AbstractFormater na construç�
 
 **⚙️ Instruções para rodar o projeto**
 
-Instale as dependências do projeto: npm install
+Instale as dependências do projeto: `npm install`
 
-Rodar o projeto principal: node index.js
+Rodar o projeto principal: `node index.js`
